@@ -201,7 +201,7 @@ public class InterfaceEventsEntityRendering {
         if (entity instanceof PlayerEntity) {
             //Check if we are holding a gun.  This is the only other time
             //we apply player tweaks besides riding in a vehicle.
-            EntityPlayerGun gunEntity = EntityPlayerGun.playerClientGuns.get(entity.getUUID());
+            EntityPlayerGun gunEntity = EntityPlayerGun.playerClientGun;
             if (gunEntity != null && gunEntity.activeGun != null) {
                 PlayerEntity player = (PlayerEntity) entity;
 
@@ -237,7 +237,7 @@ public class InterfaceEventsEntityRendering {
      */
     @SubscribeEvent
     public static void on(RenderHandEvent event) {
-        EntityPlayerGun entity = EntityPlayerGun.playerClientGuns.get(Minecraft.getInstance().player.getUUID());
+        EntityPlayerGun entity = EntityPlayerGun.playerClientGun;
         if ((entity != null && entity.activeGun != null) || CameraSystem.runningCustomCameras) {
             event.setCanceled(true);
         }
@@ -245,7 +245,7 @@ public class InterfaceEventsEntityRendering {
 
     @SubscribeEvent
     public static void on(RenderArmEvent event) {
-        EntityPlayerGun entity = EntityPlayerGun.playerClientGuns.get(Minecraft.getInstance().player.getUUID());
+        EntityPlayerGun entity = EntityPlayerGun.playerClientGun;
         if ((entity != null && entity.activeGun != null) || CameraSystem.runningCustomCameras) {
             event.setCanceled(true);
         }

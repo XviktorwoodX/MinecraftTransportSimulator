@@ -248,7 +248,7 @@ public class InterfaceEventsEntityRendering {
             //we apply player tweaks besides riding in a vehicle.
             if (ConfigSystem.client.renderingSettings.playerTweaks.value) {
                 EntityPlayer player = (EntityPlayer) entity;
-                EntityPlayerGun gunEntity = EntityPlayerGun.playerClientGuns.get(entity.getUniqueID());
+                EntityPlayerGun gunEntity = EntityPlayerGun.playerClientGun;
                 if (gunEntity != null && gunEntity.activeGun != null) {
 
                     //Get arm rotations.
@@ -403,16 +403,14 @@ public class InterfaceEventsEntityRendering {
      */
     @SubscribeEvent
     public static void on(RenderHandEvent event) {
-        EntityPlayerGun entity = EntityPlayerGun.playerClientGuns.get(Minecraft.getMinecraft().player.getUniqueID());
-        if ((entity != null && entity.activeGun != null) || CameraSystem.runningCustomCameras) {
+        if ((EntityPlayerGun.playerClientGun != null && EntityPlayerGun.playerClientGun.activeGun != null) || CameraSystem.runningCustomCameras) {
             event.setCanceled(true);
         }
     }
 
     @SubscribeEvent
     public static void on(RenderSpecificHandEvent event) {
-        EntityPlayerGun entity = EntityPlayerGun.playerClientGuns.get(Minecraft.getMinecraft().player.getUniqueID());
-        if ((entity != null && entity.activeGun != null) || CameraSystem.runningCustomCameras) {
+        if ((EntityPlayerGun.playerClientGun != null && EntityPlayerGun.playerClientGun.activeGun != null) || CameraSystem.runningCustomCameras) {
             event.setCanceled(true);
         }
     }
