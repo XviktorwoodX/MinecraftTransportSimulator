@@ -68,7 +68,7 @@ public class PacketPartChange extends APacketEntity<AEntityF_Multipart<?>> {
         if (partStack != null) {
             APart part = ((AItemPart) partStack.getItem()).createPart(entity, null, entity.definition.parts.get(partSlot), partStack.getData());
             entity.addPart(part, false);
-            part.addPartsPostAddition(null, partStack.getData());
+            part.addPartsPostConstruction(null, partStack.getData());
         } else {
             APart part = world.getEntity(partUUID);
             if (part != null) {

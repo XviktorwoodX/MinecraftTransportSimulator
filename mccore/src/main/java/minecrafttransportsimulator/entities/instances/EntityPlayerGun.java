@@ -138,7 +138,7 @@ public class EntityPlayerGun extends AEntityF_Multipart<JSONDummyPartProvider> {
                 if (activeGun == null && heldGun != null) {
                     if (heldGun.definition.gun.handHeld) {
                         gunStack = player.getHeldStack();
-                        addPartFromStack(gunStack, player, 0);
+                        addPartFromStack(gunStack, player, 0, true);
                         hotbarSelected = player.getHotbarIndex();
                     }
                 }
@@ -247,6 +247,11 @@ public class EntityPlayerGun extends AEntityF_Multipart<JSONDummyPartProvider> {
     }
 
     @Override
+    public boolean loadFromWorldData() {
+        return true;
+    }
+
+    @Override
     public boolean requiresDeltaUpdates() {
         return true;
     }
@@ -287,6 +292,7 @@ public class EntityPlayerGun extends AEntityF_Multipart<JSONDummyPartProvider> {
     @Override
     public IWrapperNBT save(IWrapperNBT data) {
         super.save(data);
+        data.setBoolean("isPlayerGun", true);
         if (player != null) {
             data.setUUID("playerUUID", player.getID());
         }
